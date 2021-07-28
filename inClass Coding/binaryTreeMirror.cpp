@@ -15,7 +15,6 @@ class node{
         }
 };
 
-
 node* buildTree(){
     int x;
     cin >> x;
@@ -29,36 +28,39 @@ node* buildTree(){
     return root;
     
 }
-
-int numOfNodes(node* root){
-
+void preOrder(node* root){
     if(root == NULL){
-        return 0;
+        // root represents an empty tree
+        cout << "-1 ";
+        return;
     }
-
-    int left = numOfNodes(root->left);
-    int right = numOfNodes(root->right);
-
-    return left + right + 1;
+    cout << root->data << " ";
+    preOrder(root->left);
+    preOrder(root->right);
 }
 
-int sumOfNodes(node* root){
-
-    if(root == NULL){
-        return 0;
+void mirror(node* root){
+    if( root == NULL){
+        return;
     }
-
-    int left = numOfNodes(root->left);
-    int right = numOfNodes(root->right);
-
-    return left + right + root->data;
+    mirror(root->left);
+    mirror(root->right);
+    swap(root->left, root->right);
 }
-
 int main(){
     node* root = NULL;
     root = buildTree();
-    cout << " Number of nodes " << numOfNodes(root) << endl;
-    cout << " Sum of nodes " << sumOfNodes(root) << endl;
+    
+    preOrder(root);
+    cout << endl;
+
+    mirror(root);
+    cout << endl;
+
+    preOrder(root);
+    cout << endl;
+
+
     return 0;
     
 }

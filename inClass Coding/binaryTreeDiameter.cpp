@@ -14,7 +14,11 @@ class node{
             this->left = this->right = NULL;
         }
 };
-
+class Pair{
+    public :
+        int height;
+        int diameter;
+};
 node* buildTree(){
     int x;
     cin >> x;
@@ -55,11 +59,28 @@ int diameter(node* root){
 
     return max(hl + hr + 2, max(dL, dR));
 }
+Pair diameterEff(node* root){
+    Pair p;
+    if( root == NULL){
+        // root represents an empty tree
+        p.height = -1;
+        p.diameter  = 0;
+        return p;
+    }
 
+    Pair pL = diameterEff(root->left);
+    Pair pR = diameterEff(root->right);
+
+    p.height = 1 + max(pL.height, pR.height);
+    p.diameter = max(2 + pL.height + pR.height, max(pL.diameter, pR.diameter));
+
+    return p;
+}
 int main(){
     node* root = NULL;
     root = buildTree();
     cout << "Diameter : " << diameter(root) <<endl;
+    cout << "Diameter : " << diameterEff(root).diameter <<endl;
     return 0;
     
 }
