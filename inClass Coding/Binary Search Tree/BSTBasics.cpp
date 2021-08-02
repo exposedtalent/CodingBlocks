@@ -165,25 +165,27 @@ int main(){
     cout << endl;
     int key;
     cin >> key;
+
     // search
     search(root, key) ? cout << "true" << endl : cout << "false" << endl;
-    // Min & Max
-    // node* min = findMin(root);
-    // min != NULL ? cout << "Min: " << min->data : cout << "BST is empty" << endl;
     
-    // node* max = findMax(root);
-    // max != NULL ? cout << "Max: " << max->data : cout << "BST is empty" << endl;
+    // Min & Max
+    node* min = findMin(root);
+    min != NULL ? cout << "Min: " << min->data : cout << "BST is empty" << endl;
+    node* max = findMax(root);
+    max != NULL ? cout << "Max: " << max->data : cout << "BST is empty" << endl;
+    
+    // Range
+    int s,e;
+    cout << "s >> ";
+    cin >> s;
+    cout << "e >> ";
+    cin >> e;
 
-    // // Range
-    // int s,e;
-    // cout << "s >> ";
-    // cin >> s;
-    // cout << "e >> ";
-    // cin >> e;
-
-    // cout << "range[ " << s <<  " , " << e <<" ]";
-    // range(root, s, e);
-
+    cout << "range[ " << s <<  " , " << e <<" ]";
+    range(root, s, e);
+    
+    // Delete a node
     del(root, key);
     inOrder(root);
     
