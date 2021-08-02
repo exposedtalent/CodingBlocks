@@ -22,7 +22,24 @@ node* buildTree(){
 
     node* root = new node(x);
     queue<node*>q;
-    
+    q.push(root);
+
+    while(!q.empty()){
+        int left, right;
+        cin >> left >> right;
+        node* front = q.front();
+        q.pop();
+        if(left != -1){
+            front->left = new node(left);
+            q.push(front->left);
+        }
+        if(right != -1){
+            front->right = new node(right);
+            q.push(front->right);
+        }
+    }
+    return root;
+
 }
 
 void leverOrderPrintwithNewLine(node* root){

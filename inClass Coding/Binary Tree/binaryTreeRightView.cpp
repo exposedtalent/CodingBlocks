@@ -43,9 +43,9 @@ void rightView(node* root, int curLev, int& maxLevel){
 int main(){
     node* root = NULL;
     root = buildTree();
-
+    // when passing by ref we need to create a new var that sotres the value
     int lev = 0, max = -1;
-    rightView(root, lev, max );
+    rightView(root, lev, max);
     
     return 0;
     

@@ -1,4 +1,3 @@
-
 #include<iostream>
 #include<algorithm>
 #include<queue>
@@ -116,4 +115,3 @@ int main(){
     return 0;
     
 }
-// Input : 10 20 40 -1 -1 50 70 -1 -1 -1 30 -1 60 -1 -1
