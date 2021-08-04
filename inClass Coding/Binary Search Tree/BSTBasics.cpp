@@ -63,7 +63,9 @@ void range(node* root, int s, int e){
     if(root->data >= s && root->data <= e){
         cout << root->data <<  " ";
     }
+    range(root->right, s, e);
 }
+
 node* findMin(node* root){
 
     if(root == NULL){
