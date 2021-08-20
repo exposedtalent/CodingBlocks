@@ -17,7 +17,7 @@ int minCoin(vector<int>& coins, int n){
     int minC = INT_MAX;
     for(int i = 0; i < coins.size(); i++){
         if(n-coins[i] >= 0){
-            minC =  min(minC, minCoin(coins[i], n-coins[i]));
+            minC =  min(minC, minCoin(coins, n-coins[i]));
         } 
     }
     return minC == INT_MAX ? minC : 1 + minC;
@@ -33,7 +33,7 @@ int minCoinTopDown(vector<int>& coins, int n, vector<int>& dp){
     int minC = INT_MAX;
     for(int i = 0; i < coins.size(); i++){
         if(n-coins[i] >= 0){
-            minC =  min(minC, minCoinTopDown(coins[i], n-coins[i], dp));
+            minC =  min(minC, minCoinTopDown(coins, n-coins[i], dp));
         } 
     }
     int ans = minC == INT_MAX ? minC : 1 + minC;
