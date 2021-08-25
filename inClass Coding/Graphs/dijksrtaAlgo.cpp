@@ -79,6 +79,7 @@ class graph{
 
                     }
                 } 
+                explored.insert(minVertexName);
             }
             // For printing the distanceMap
             for(pair<T, int> vertex : distanceMap){
