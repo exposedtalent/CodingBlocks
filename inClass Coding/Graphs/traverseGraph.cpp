@@ -8,6 +8,7 @@
 #include<queue>
 #include<stack>
 using namespace std;
+
 template<typename T>
 class graph{
     bool directed;
@@ -69,14 +70,8 @@ class graph{
             }
         }
         //  BFS this generates the shortest path from the source to all the vertices 
-        void iterativeBFS(T s, T target){
+        void iterativeBFS(T s, unordered_set<T>& visited){
             queue<T> q;
-            unordered_set<T> visited;
-            unordered_map<T,int> distanceMap;
-            unordered_map<T,T> parentMap;
-
-            distanceMap[s] = 0; // Len of shortest path from source to source is
-            parentMap[s] = s;
 
             q.push(s);
             visited.insert(s);
@@ -90,22 +85,23 @@ class graph{
                     if(visited.find(child) == visited.end()){
                         q.push(child);
                         visited.insert(child);
-                        distanceMap[child] = distanceMap[parent] +1;
-                        parentMap[child] = parent;
                     }
                 }
             }
-            cout << "the length of the shortest path " << s << " & " << target << " = " << distanceMap[target] << endl;
-            T temp = target;
-
-            while(parentMap[temp] != temp){
-                cout << temp << "<-";
-                temp = parentMap[temp];
-            }
-            cout << s << endl;
-        
         }
 
+
+        void traverseBFS(){
+            unordered_set<T> visited;
+
+            for(pair <T, list<T> > vertex : neighborMap){
+                T vertexName  = vertex.first;
+                // do yet vistied the vertex
+                if(visited.find(vertexName) == visited.end()){
+                    iterativeBFS(vertexName, visited);
+                }
+            }
+        }
 };
 
 int main(){
@@ -117,13 +113,13 @@ int main(){
     g.addEdge(2, 3);     
     g.addEdge(3, 4);     
 
+    g.addEdge(9,10);
+    g.addEdge(9,11);
+    g.addEdge(10,11);
+    
     g.print();
 
-    g.recursiveDFS(0);
-    cout << endl;
-    g.iterativeDFS(0);
-    cout << endl;
-    g.iterativeBFS(0, 3);
+    g.traverseBFS();
 
     return 0;
 }
