@@ -67,7 +67,7 @@ class graph{
                 }
             }
         }
-        //  BFS
+        //  BFS this generates the shortest path from the source to all the vertices 
         void iterativeBFS(T s){
             queue<T> q;
             unordered_set<T> visited;
